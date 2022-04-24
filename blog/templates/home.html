@@ -1,0 +1,48 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{%static 'home2.css'%}">
+	<title>BLOG</title>
+</head>
+<body>
+
+<div class="nav">
+    <ul>
+        <li><a href="{% url 'home' %}">BLOG</a></li>
+        <li><a href="{% url 'home' %}">Home</a></li>
+		<li><a href="{% url 'add_blog' %}">Add Blog</a></li>
+        {% comment %} <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'register' %}">Register</a></li> {% endcomment %}
+		<li><a href = "{%url 'my_blog'%}">My Blog</a></li>
+        <li ><a href="{% url 'logout' %}">Logout</a></li>
+		<li>Hi {{user.username}}</li>
+		{% comment %} <li>{%for message in messages%}
+			<p style = "color:white">{{message}}</p>
+		{%endfor%}</li> {% endcomment %}
+    </ul>
+</div>
+
+{% comment %} {%block content%} {% endcomment %}
+<div class = "box">
+	{%if run%}
+	{%for blog in blogs%}
+	<div class="gallery">
+		<a target="_blank" href="{%url 'blog_view' blog.id %}">
+		<img src="{{ blog.img1.url }}" alt=""></a>
+		<div class="desc">{{blog.title}}</div>
+		<h4 class="user_name">Posted by {{blog.user.username}}</h4>
+		<h4 class="time_stamp">Posted at {{blog.date_posted}}</h4>
+	</div>
+	
+	{% endfor %}
+	{%else%}
+	<h1>No blogs to display, Go on write your first blog</h1>
+	{%endif%}
+</div>
+{% comment %} {%endblock%} {% endcomment %}
+
+</body>
+</html>

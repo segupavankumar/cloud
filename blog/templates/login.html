@@ -1,0 +1,22 @@
+{% include 'main.html' %}
+
+
+
+{% block content %}
+
+<form action="" class = 'login' method = 'POST'>
+    {%csrf_token%}
+    <h1>LOGIN</h1>
+    <label for="username">User name</label>
+    <input type="text" name="username" id="username">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
+    <button type="submit">SUBMIT</button>
+
+    {%for message in messages%}
+        <p style = "color:red">{{message}}</p>
+    {%endfor%}
+    </form>
+
+
+{% endblock %}

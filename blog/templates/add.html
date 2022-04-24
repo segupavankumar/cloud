@@ -1,0 +1,35 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link href="{%static 'add.css'%}" rel="stylesheet">
+</head>
+<body>
+    <div class="nav">
+        <ul>
+            <li><a href="{% url 'home' %}">BLOG</a></li>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'add_blog' %}">Add Blog</a></li>
+            <li ><a href="{% url 'logout' %}">Logout</a></li>
+            <li>Hi {{user.username}}</li>
+        </ul>
+    </div>
+    <form action="#" class="blog" method = "POST" enctype="multipart/form-data">{%csrf_token%}
+        {{form.title.label}}
+        {{form.title}}
+        {% comment %} {{form.img1.label}} {% endcomment %}
+        {{form.img1}}
+        {{form.content.label}}
+        {{form.content}}
+        {% comment %} {{form.img2.label}} {% endcomment %}
+        {{form.img2}}
+        <button class="submit_button">SUBMIT</button>
+        {{form.errors}}
+    </form>
+
+</body>
+</html>
